@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const moment = require('moment');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -29,6 +29,6 @@ app.post('/getDayOfWeek', (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port}`);
 });
