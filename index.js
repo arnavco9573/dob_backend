@@ -1,12 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const moment = require('moment');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
+
+// Allow requests from specific origins (replace "*" with your frontend URL)
+app.use(cors({
+  origin: "https://dob-frontend.onrender.com"
+}));
 
 // Endpoint to handle POST requests
 app.post('/getDayOfWeek', (req, res) => {
@@ -29,6 +35,6 @@ app.post('/getDayOfWeek', (req, res) => {
 });
 
 // Start the server
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
